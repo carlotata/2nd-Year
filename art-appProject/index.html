@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="retro" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ART APP PROJECT - MUSASA</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <style>
+            .typewriter {
+                font-size: 5vw;
+                display: inline-block;
+                white-space: nowrap;
+                overflow: hidden;
+                border-right: 2px solid black; /* Cursor effect */
+                width: 0; /* Initially hidden */
+                animation: typing 8s steps(30, end) infinite,
+                    blink-caret 0.75s step-end infinite;
+            }
+
+            @keyframes typing {
+                from {
+                    width: 0;
+                }
+                to {
+                    width: 15em;
+                }
+            }
+
+            @keyframes blink-caret {
+                from {
+                    border-right-color: rgba(255, 255, 255, 0.75);
+                }
+                to {
+                    border-right-color: transparent;
+                }
+            }
+
+            /* Adjustments for larger screens */
+            @media (min-width: 768px) {
+                .typewriter {
+                    font-size: 4vw; /* Slightly smaller font size for medium screens */
+                }
+            }
+
+            @media (min-width: 1024px) {
+                .typewriter {
+                    font-size: 3vw; /* Even smaller font size for larger screens */
+                }
+            }
+
+            .drawer-content {
+                max-height: calc(
+                    100vh - 4rem
+                ); /* Adjust based on your header height */
+            }
+        </style>
+    </head>
+    <!-- Please kog download sa mga photo ref ninyo or kamo bahala oy tiguwang namo -->
+    <body>
+        <div id="Home"></div>
+        <button
+            type="button"
+            data-twe-ripple-init
+            data-twe-ripple-color="light"
+            class="!fixed bottom-5 end-5 hidden rounded-full bg-red-600 p-3 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg"
+            id="btn-back-to-top"
+        >
+            <span class="[&>svg]:w-4">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="3"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
+                    />
+                </svg>
+            </span>
+        </button>
+        <div
+            class="navbar sticky top-0 z-50 bg-opacity-80 backdrop-blur-2xl px-5"
+        >
+            <div class="navbar-start">
+                <a class="btn btn-ghost text-lg" href="#Home">WILLIAN'S GROUP</a>
+            </div>
+            <div class="navbar-center hidden lg:flex">
+                <ul class="menu menu-horizontal px-1 text-lg not-italic">
+                    <li><a href="#Home">Home</a></li>
+                    <li><a href="#Footer">About Us</a></li>
+                    <li><a href="reference.html">References</a></li>
+                </ul>
+            </div>
+            <div class="navbar-end pe-5">
+                <label class="swap swap-rotate">
+                    <!-- this hidden checkbox controls the state -->
+                    <input
+                        type="checkbox"
+                        class="theme-controller"
+                        value="synthwave"
+                    />
+
+                    <!-- sun icon -->
+                    <svg
+                        class="swap-off h-10 w-10 fill-current"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"
+                        />
+                    </svg>
+
+                    <!-- moon icon -->
+                    <svg
+                        class="swap-on h-10 w-10 fill-current"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"
+                        />
+                    </svg>
+                </label>
+            </div>
+        </div>
+        <div
+            class="typewriter-container"
+            style="text-align: center; margin-top: 20px"
+        >
+            <div class="typewriter">GAMABA ARTIST | MUSASA . . .</div>
+        </div>
+
+        <div
+            class="flex flex-col md:flex-row md:justify-center md:space-x-4 items-center m-20"
+        >
+            <div
+                class="card bg-base-100 image-full w-full md:w-96 lg:w-[40rem] shadow-xl transition-transform duration-500 hover:scale-105"
+            >
+                <figure style="height: 400px" class="w-full">
+                    <img
+                        src="mutuc.webp"
+                        alt="Mutuc"
+                        class="object-cover h-full w-full"
+                    />
+                </figure>
+                <div class="card-body backdrop-blur-sm text-white">
+                    <h2 class="card-title text-2xl">MUTUC</h2>
+                    <p class="text-lg font-semibold">Eduardo Tubig Mutuc</p>
+                    <p class="text-sm">
+                        A master craftsman in the art of "metalsmithing,"
+                        renowned for his intricate silver and wood works.
+                    </p>
+                    <div class="card-actions justify-end">
+                        <button class="btn btn-primary">
+                            <a href="#Mutuc">Learn more!</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="card bg-base-100 image-full w-full md:w-96 lg:w-[40rem] shadow-xl mt-4 md:mt-0 transition-transform duration-500 hover:scale-105"
+            >
+                <figure style="height: 400px" class="w-full">
+                    <img
+                        src="saclag.jpg"
+                        alt="Saclag"
+                        class="object-cover h-full w-full"
+                    />
+                </figure>
+                <div class="card-body backdrop-blur-sm text-white">
+                    <h2 class="card-title text-2xl">SACLAG</h2>
+                    <p class="text-lg font-semibold">Alonzo Saclag</p>
+                    <p class="text-sm">
+                        A cultural advocate dedicated to preserving the rich
+                        traditions and rituals of the Kalinga people.
+                    </p>
+                    <div class="card-actions justify-end">
+                        <button class="btn btn-primary">
+                            <a href="#Saclag">Learn more!</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="card bg-base-100 image-full w-full md:w-96 lg:w-[40rem] shadow-xl mt-4 md:mt-0 transition-transform duration-500 hover:scale-105"
+            >
+                <figure style="height: 400px" class="w-full">
+                    <img
+                        src="sawabi.jpg"
+                        alt="Sawabi"
+                        class="object-cover h-full w-full"
+                    />
+                </figure>
+                <div class="card-body backdrop-blur-sm text-white">
+                    <h2 class="card-title text-2xl">SAWABI</h2>
+                    <p class="text-lg font-semibold">Darhata Sawabi</p>
+                    <p class="text-sm">
+                        An expert weaver, celebrated for her mastery in
+                        traditional textile techniques from the island of Sulu.
+                    </p>
+                    <div class="card-actions justify-end">
+                        <button class="btn btn-primary">
+                            <a href="#Sawabi">Learn more!</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="Mutuc"></div>
+        <main class="container my-40 mx-auto">
+            <!-- Eduardo Mutuc Section -->
+            <section
+                class="my-16 border-4 border-transparent shadow-2xl p-6 rounded-lg"
+                style="background-color: rgba(255, 228, 225, 0.8)"
+            >
+                <h2 class="text-3xl font-bold mb-6">Eduardo Tubig Mutuc</h2>
+                <div class="flex flex-col md:flex-row md:space-x-8">
+                    <div class="w-full md:w-1/3 border-4 border-transparent">
+                        <img
+                            src="mutuc.webp"
+                            alt="Eduardo Mutuc"
+                            class="w-full h-64 object-cover rounded-3xl shadow-lg"
+                        />
+                    </div>
+                    <div
+                        class="w-full md:w-2/3 border-l-4 border-transparent shadow-2xl pl-4 p-10"
+                    >
+                       <h3 class="text-2xl font-semibold mb-4">Biography</h3>
+                    <p class="text-base mb-4">
+                        Eduardo Tubig Mutuc was born on April 8, 1950, in Apalit, Pampanga, Philippines, into a large family with nine siblings. Growing up, he assisted his farmer parents in the fields, reflecting a life of humble beginnings.
+                        <br /><br />
+                        To support his family, Mutuc worked as a helper in a furniture store. He was mentored by Carlos Quiros in wood carving at the Lozano family's antique shop. He later learned silver plating from a friend, which introduced him to the art of pinukpuk, involving the use of mallets and chisels to create ornate metal designs.
+                        <br /><br />
+                        Mutuc’s career began with a significant commission from Monsieur Fidelis Limcauco to create a tabernacle for a parish church in Fairview, Quezon City. He left the furniture shop to focus on pinukpuk and has since become a leading figure in Filipino metalcraft.
+                    </p>
+
+                    <h3 class="text-2xl font-semibold mb-4">Artistic Contribution</h3>
+                    <p class="text-base mb-4">
+                        Eduardo Tubig Mutuc is renowned for his expertise in pinukpuk, a traditional Filipino craft involving the intricate stamping of metal sheets. Over the past three decades, he has established himself as one of the foremost metal craftsmen in the country. His work includes a range of commissioned pieces, from ecclesiastical items such as altar tables and tabernacles to decorative objects like candelabras, picture frames, and salakots. His creations are also available at Tesoro’s in Manila, showcasing his craftsmanship to a broader audience.
+                    </p>
+
+                    <h3 class="text-2xl font-semibold mb-4">Legacy</h3>
+                    <p class="text-base mb-4">
+                        Eduardo Mutuc's contributions to both religious and secular art have left a lasting mark on Filipino culture. His intricately detailed retablos, mirrors, altars, and carosas are found in churches and private collections across the country. Some of his works are monumental in scale, exceeding forty feet, while others are delicate and meticulously crafted.
+                        <br /><br />
+                        Mutuc's legacy extends beyond his creations. By mentoring a new generation of artisans and actively promoting the techniques of pinukpuk, he plays a crucial role in ensuring the survival and sustainability of this traditional art form.
+                    </p>
+
+                    </div>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-center m-20">
+                    Notable Works & Video Presentation
+                </h3>
+                <div
+                    class="flex flex-col md:flex-row md:space-x-8 justify-center my-10"
+                >
+                    <div class="w-full md:w-1/2 mb-6">
+                        <h4 class="text-xl font-semibold mb-4 text-center">
+                            Notable Works
+                        </h4>
+                        <!-- Please kog dungag sa works, wa nakoy kalibutan -->
+                        <div
+                            class="flex flex-wrap justify-center space-x-4 space-y-4 px-5"
+                        >
+                            <ul class="list-disc">
+                                <div
+                                    class="md:w-1/1 text-center md:text-left mb-4 md:mb-0 my-10"
+                                >
+                                    <p class="strong text-center font-medium">
+                                        Candelabra Metal Piece and Crucifix
+                                    </p>
+                                </div>
+                                <div
+                                    class="my-2 flex flex-col md:flex-row items-center"
+                                >
+                                    <div class="flex flex-wrap gap mx-20">
+                                        <img
+                                            src="candelabraMetalPiece.webp"
+                                            alt="Darhata Sawabi Work 1"
+                                            class="w-full md:w-1/3 h-64 object-cover rounded-lg shadow-lg"
+                                        />
+                                        <img
+                                            src="crucifix2.webp"
+                                            alt="Darhata Sawabi Work 2"
+                                            class="w-full md:w-1/3 h-64 object-cover rounded-lg shadow-lg"
+                                        />
+                                        <img
+                                            src="crucifix3.webp"
+                                            alt="Darhata Sawabi Work 3"
+                                            class="w-full md:w-1/3 h-64 object-cover rounded-lg shadow-lg"
+                                        />
+                                    </div>
+                                </div>
+                                <p>
+                                    A commission designed in the Spanish
+                                    colonial-era style, reflecting the profound
+                                    spiritual and cultural significance found in
+                                    Church figurines and religious objects.
+                                </p>
+                                <p>
+                                    This piece combines wood and brass,
+                                    featuring a wooden cross and a brass base.
+                                    The removable metal components and
+                                    detachable cross allow for versatile display
+                                    options, either as a tabletop candelabra or
+                                    as a wall-hanging crucifix.
+                                </p>
+                                <div class="my-10">
+                                    <div
+                                        class="md:w-1/1 text-center md:text-left mb-4 md:mb-0"
+                                    >
+                                        <p
+                                            class="strong text-center font-medium"
+                                        >
+                                            Sacred Statue
+                                        </p>
+                                    </div>
+                                    <img
+                                        src="mutuc1.webp"
+                                        alt="Darhata Sawabi Work 1"
+                                        class="w-full md:w-1/3 h-64 object-cover rounded-lg shadow-lg mx-auto"
+                                    />
+                                <p>
+                                    Mutuc's creations are not just decorative,
+                                    they add character and magnificence to their
+                                    surroundings. His stunning retablos,
+                                    particularly those adorning an apse or
+                                    chapel, serve as a focal point for
+                                    contemplation and devotion during regular
+                                    Church celebrations.
+                                </p>
+                                <div class="my-10">
+                                    <div
+                                        class="md:w-1/1 text-center md:text-left mb-4 md:mb-0"
+                                    >
+                                        <p
+                                            class="strong text-center font-medium"
+                                        >
+                                            Pukpuk Silver
+                                        </p>
+                                    </div>
+                                    <img
+                                        src="pukpukSilverArtwork.webp"
+                                        alt="Darhata Sawabi Work 1"
+                                        class="w-full md:w-1/3 h-64 object-cover rounded-lg shadow-lg mx-auto"
+                                    />
+                                <p>
+                                    Mutuc employs a meticulous process to incise
+                                    intricate designs into the metal by pounding
+                                    and shaping the metal against a wooden block
+                                    with rudimentary tools. The end result is a
+                                    stunning and culturally significant
+                                    masterpiece that reflects the Philippines'
+                                    rich artistic heritage.
+                                </p>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <h4 class="text-xl font-semibold mb-4 text-center">
+                            Video Presentation
+                        </h4>
+                        <div class="flex justify-center my-20">
+                            <iframe
+                                width="853"
+                                height="480"
+                                src="https://www.youtube.com/embed/pTslCbZoZ9M?si=R3a2v65YSyfdOeel"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div id="Saclag"></div>
+            </section>
+
+            <!-- Alonzo Saclag Section -->
+            <section
+                class="my-16 border-4 border-transparent shadow-2xl p-6 rounded-lg"
+                style="background-color: rgba(255, 255, 204, 0.8)"
+            >
+                <h2 class="text-3xl font-bold mb-6">Alonzo Saclag</h2>
+                <div class="flex flex-col md:flex-row md:space-x-8">
+                    <div class="w-full md:w-1/3 border-4 border-transparent">
+                        <img
+                            src="saclag.jpg"
+                            alt="Alonzo Saclag"
+                            class="w-full h-64 object-cover rounded-3xl shadow-lg"
+                        />
+                    </div>
+                    <div
+                        class="w-full md:w-2/3 border-l-4 border-transparent shadow-2xl pl-4 p-10"
+                    >
+                        <h3 class="text-2xl font-semibold mb-4">Biography</h3>
+                    <p class="text-base mb-4">
+                        Alonzo Saclag, born on August 4, 1942, in Lubuagan, Kalinga province, is a member of the Kalinga people. A musician and cultural advocate, Saclag taught himself the traditions of his people, learning to play traditional Kalinga musical instruments and perform ritual dance movements through observation and experience, without formal instruction.
+                        <br /><br />
+                        Saclag is deeply passionate about preserving and passing on Kalinga culture, particularly to the younger generation. He has worked extensively to revive traditional Kalinga practices, including playing the gangsa and promoting Kalinga culture in local schools.
+                    </p>
+
+                    <h3 class="text-2xl font-semibold mb-4">Artistic Contributions</h3>
+                    <p class="text-base mb-4">
+                        Saclag has made a significant impact by promoting Kalinga culture through various means. He has advocated for traditional clothing and folk songs, facilitated the broadcast of traditional Kalinga music on local radio, and worked to ensure that Kalinga cultural heritage is preserved and made accessible to both locals and tourists.
+                        <br /><br />
+                        To ensure the transmission of his knowledge, he established the Kalinga Budong Dance Troupe, where he teaches young men and women about the music and dance of their ancestors.
+                    </p>
+
+                    <h3 class="text-2xl font-semibold mb-4">Legacy</h3>
+                    <p class="text-base mb-4">
+                        Recognized as a GAMABA (Gawad sa Manlilikha ng Bayan) Artist, Saclag has continued his advocacy for Kalinga culture even after receiving the award. He acquired land in Lubuagan and established a village called Awichon, where visitors can experience Kalinga's rich culture, including native houses and a collection of traditional instruments such as gongs and bamboo flutes.
+                        <br /><br />
+                        Saclag remains dedicated to nurturing and passing on the knowledge he has gained from his elders to future generations.
+                    </p>
+
+                    </div>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-center m-20">
+                    Notable Works & Video Presentation
+                </h3>
+                <div
+                    class="flex flex-col md:flex-row md:space-x-8 justify-center my-20"
+                >
+                    <div class="w-full md:w-1/2 mb-6">
+                        <h4 class="text-xl font-semibold mb-4 text-center">
+                            Notable Works
+                        </h4>
+                        <div
+                            class="flex flex-wrap justify-center space-x-4 space-y-4 px-5"
+                        >
+                            <ul class="list-disc">
+                                <div class="my-10">
+                                    <p class="text-center font-medium">
+                                        Established Awichon Village
+                                    </p>
+                                    <img
+                                        src="awinchon-village.jpg"
+                                        alt="Established Awichon Village"
+                                        class="w-full md:w-1/2 h-64 object-cover rounded-lg shadow-lg mx-auto"
+                                    />
+                                    <p class="text-center mt-2">
+                                        Alonzo Saclag played a pivotal role in
+                                        establishing Awichon Village, which
+                                        serves as a significant cultural and
+                                        community center for the Kalinga people.
+                                    </p>
+                                </div>
+                                <div class="my-10">
+                                    <p class="text-center font-medium">
+                                        Founder of the Kalinga Budong Dance
+                                        Troupe
+                                    </p>
+                                    <img
+                                        src="kalinga.jpg"
+                                        alt="Founder of the Kalinga Budong Dance Troupe"
+                                        class="w-full md:w-1/2 h-64 object-cover rounded-lg shadow-lg mx-auto"
+                                    />
+                                    <p class="text-center mt-2">
+                                        As the founder of the Kalinga Budong
+                                        Dance Troupe, Saclag has been
+                                        instrumental in preserving and
+                                        showcasing traditional Kalinga dances,
+                                        fostering appreciation and continuity of
+                                        their cultural heritage.
+                                    </p>
+                                </div>
+                                <div class="my-10">
+                                    <p class="text-center font-medium">
+                                        Mastery of the Kalinga musical
+                                        instruments and dance patterns
+                                    </p>
+                                    <iframe
+                                        class="w-full md:w-1/1 h-64 object-cover rounded-lg shadow-lg"
+                                        width="560"
+                                        height="315"
+                                        src="https://www.youtube.com/embed/7vWG0bn3mHw?si=eSnKPYtJu6qTaU3L"
+                                        title="YouTube video player"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        allowfullscreen
+                                    ></iframe>
+                                    <p class="text-center mt-2">
+                                        Saclag is celebrated for his expertise
+                                        in Kalinga musical instruments and dance
+                                        patterns. His mastery highlights the
+                                        rich traditions and cultural practices
+                                        of the Kalinga people, captured in this
+                                        video presentation.
+                                    </p>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <h4 class="text-xl font-semibold mb-4 text-center">
+                            Video Presentation
+                        </h4>
+                        <div class="flex justify-center my-20">
+                            <iframe
+                                width="853"
+                                height="480"
+                                src="https://www.youtube.com/embed/T_JgjviKc-A"
+                                title="Know Your North Season 4 - National Living Treasure Alonzo Saclag"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div id="Sawabi"></div>
+            </section>
+
+            <!-- Darhata Sawabi Section -->
+            <section
+                class="my-16 border-4 border-transparent shadow-2xl p-6 rounded-lg"
+                style="background-color: rgba(204, 255, 204, 0.8)"
+            >
+                <h2 class="text-3xl font-bold mb-6">Darhata Sawabi</h2>
+                <div class="flex flex-col md:flex-row md:space-x-8">
+                    <div class="w-full md:w-1/3 border-4 border-transparent">
+                        <img
+                            src="sawabi.jpg"
+                            alt="Darhata Sawabi"
+                            class="w-full h-64 object-cover rounded-3xl shadow-lg"
+                        />
+                    </div>
+                    <div
+                        class="w-full md:w-2/3 border-l-4 border-transparent shadow-2xl pl-4 p-10"
+                    >
+                        <h3 class="text-2xl font-semibold mb-4">Biography</h3>
+                    <p class="text-base mb-4">
+                        Darhata Sawabi, born in 1936, is a skilled Tausug weaver from Sulu, Philippines, and a member of the Sama-Bajau ethnic group. She is renowned for her expertise in weaving the traditional Pis syabit head covering, a craft she learned from her mother. 
+                        <br /><br />
+                        Unmarried and relying solely on weaving as her source of income, Sawabi faces challenges, including forced relocations during conflicts. Despite these hardships, she remains dedicated to her craft and community, teaching younger generations the art of weaving and preserving her cultural heritage.
+                    </p>
+
+                    <h3 class="text-2xl font-semibold mb-4">Artistic Contribution</h3>
+                    <p class="text-base mb-4">
+                        Darhata Sawabi is a prominent Filipino textile artist whose work is deeply influenced by the rich cultural traditions of the Sulu Archipelago. Her mastery of traditional weaving techniques and vibrant textile patterns has established her as a leading figure in her field.
+                        <br /><br />
+                        Sawabi began her weaving journey at a young age, learning through observation and practice. Her commitment to preserving and innovating traditional weaving methods has contributed significantly to her community's cultural heritage.
+                    </p>
+
+                    <h3 class="text-2xl font-semibold mb-4">Legacy</h3>
+                    <p class="text-base mb-4">
+                        Sawabi’s dedication to weaving has played a crucial role in preserving traditional textile techniques. Her work has also influenced contemporary textile art by blending traditional methods with modern design principles.
+                        <br /><br />
+                        Through her teaching and mentoring, Sawabi ensures that traditional weaving skills are passed down to future generations. Her contributions have been recognized through various awards and exhibitions, highlighting her impact on both cultural preservation and contemporary art.
+                    </p>
+
+                    <h3 class="text-2xl font-semibold mb-4">Traditional Textiles</h3>
+                    <p class="text-base mb-4">
+                        <strong>Kain (Clothing):</strong> Traditional Sama-Bajau garments often feature intricate weaving patterns that reflect cultural stories and values.
+                        <br /><br />
+                        <strong>Pangalay (Dance):</strong> The weaving patterns are sometimes mirrored in the movements of traditional dances, showcasing the interconnectedness of cultural practices.
+                    </p>
+
+                    </div>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-center m-20">
+                    Notable Works & Video Presentation
+                </h3>
+                <div
+                    class="flex flex-col md:flex-row md:space-x-8 justify-center my-10"
+                >
+                    <div class="w-full md:w-1/2 mb-6">
+                        <h4 class="text-xl font-semibold mb-4 text-center">
+                            Notable Work
+                        </h4>
+                        <div class="flex flex-col items-center my-10">
+                            <div class="text-center">
+                                <p class="font-medium">Pis Syabit</p>
+                            </div>
+                            <img
+                                src="sawabiwork.jpg"
+                                alt="Pis Syabit"
+                                class="w-full md:w-1/2 h-64 object-cover rounded-lg shadow-lg"
+                            />
+                            <p class="text-center mt-2">
+                                This notable work by Darhata Sawabi is renowned
+                                for its intricate craftsmanship and cultural
+                                significance. The artwork showcases Sawabi's
+                                exceptional skill and dedication to preserving
+                                traditional artistry.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <h4 class="text-xl font-semibold mb-4 text-center">
+                            Video Presentation
+                        </h4>
+                        <div class="flex justify-center my-16">
+                            <iframe
+                                width="853"
+                                height="480"
+                                src="https://www.youtube.com/embed/s4H0KILFSKA?si=WTvf4YB9qcJIFQ4p&amp;start=1497"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Please kog fill in sad sa mga reference links asta additional needed links:))-->
+        <footer class="footer bg-base-300 text-base-content p-10">
+          <div id="Footer"></div>
+            <nav>
+                <h6 class="footer-title">RESEARCHERS:</h6>
+                <a class="link link-hover" href="https://www.facebook.com/conybeare.damayo.1" target="_blank">Damayo, Conybeare</a>
+                <a class="link link-hover" href="https://www.facebook.com/profile.php?id=100084137717838" target="_blank">Degamo, Willian</a>
+            </nav>
+            <nav>
+                <h6 class="footer-title">E-Portfolio Developers:</h6>
+                <a class="link link-hover" href="https://www.facebook.com/jc.aviso.9/" target="_blank">Aviso, John Carl</a>
+                <a class="link link-hover" href="https://www.facebook.com/lourdenbaydal13" target="_blank">Baydal, Lourden</a>
+                <a class="link link-hover" href="https://www.facebook.com/patigasjohnpaul" target="_blank">Patigas, John Paul</a>
+            </nav>
+            <nav>
+                <h6 class="footer-title">BSIT 2-C</h6>
+                <!-- Linking  -->
+                <a class="link link-hover" href="reference.html">References & Links</a>
+                <a class="link link-hover"  href="https://www.facebook.com/chrisdano2000" target="_blank">Instructor | CHRISLYN DAÑO</a>
+                <a class="link link-hover" href="https://www.facebook.com/cpcofficial2005" target="_blank">Cordova Public College</a>
+            </nav>
+            <nav>
+              <h6 class="footer-title text-2xl font-bold">Social</h6>
+              <div class="grid grid-flow-col gap-4">
+              <!-- Example Facebook Icon -->
+              <a href="https://x.com/" target="_blank" class="text-xl">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                class="fill-current"
+                > 
+                <path
+                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+                ></path>
+              </svg>
+               </a>
+              <!-- Example Twitter Icon -->
+              <a href="https://youtube.com" target="_blank" class="text-xl">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                class="fill-current"
+                >
+                <path
+                    d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"
+                ></path>
+            </svg>
+            </a>
+            <!-- Example Instagram Icon -->
+            <a href="https://www.facebook.com/cpcofficial2005" target="_blank" class="text-xl">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                class="fill-current"
+                >
+                <path
+                    d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"
+                ></path>
+                </svg>
+              </a>
+              </div>
+              </nav>
+        </footer>
+        <div class="container mx-auto text-center p-4">
+          <p class="text-lg font-medium">&copy; 2024 ART APPRECIATION | E-PORTFOLIO. All rights reserved.</p>
+        </div>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            const mybutton = document.getElementById("btn-back-to-top");
+
+            const scrollFunction = () => {
+                if (
+                    document.body.scrollTop > 20 ||
+                    document.documentElement.scrollTop > 20
+                ) {
+                    mybutton.classList.remove("hidden");
+                } else {
+                    mybutton.classList.add("hidden");
+                }
+            };
+            const backToTop = () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            };
+
+            mybutton.addEventListener("click", backToTop);
+
+            window.addEventListener("scroll", scrollFunction);
+        </script>
+    </body>
+</html>
