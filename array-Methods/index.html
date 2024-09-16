@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array-Methods</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: rgb(83, 80, 80);
+        }
+        .buttonContainer {
+            background-color: rgb(155, 149, 149);
+            padding: 5px;
+            border-right: 1px solid #ada9a9;
+        }
+        .buttonContainer h2 {
+            text-align: center;
+            margin-top: 0;
+        }
+        .buttonContainer button {
+            background-color: rgb(69, 105, 136);
+            border-radius: 0.5rem;
+            border: none;
+            margin-bottom: 0.5rem;
+        }
+        .content {
+            background-color: rgb(58, 75, 90);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            color: aliceblue;
+        }
+        .containerDisplay {
+            background-color: rgb(202, 202, 202);
+            border-radius: 0.5rem;
+            margin: 1rem auto;
+            padding: 0.5rem;
+            height: 3rem;
+            color: black;
+        }
+        #displayRes{
+            height: 5rem;
+            color: black;
+        }
+        button {
+            width: 100%;
+            height: 2rem;
+            margin: 5px 0;
+            background-color: rgba(161, 160, 160, 0.267);
+            border: 1px solid black;
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            transform: scale(0.98);
+            background-color: rgb(187, 187, 186);
+            color: black;
+        }
+        #button1 {
+            background-color: rgb(5, 65, 5);
+            color: rgb(179, 176, 173);
+        }
+        #button1:hover {
+            background-color: rgb(1, 105, 1);
+        }
+        #button2 {
+            background-color: rgb(94, 7, 7);
+            color: black;
+        }
+        #button2:hover {
+            background-color: rgb(161, 0, 0);
+        }
+        /* Responsive styles */
+        @media (max-width: 767px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .buttonContainer {
+                border-right: none;
+                border-bottom: 1px solid #ada9a9;
+            }
+        }
+        @media (min-width: 768px) {
+            .main-container {
+                display: flex;
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid main-container">
+        <div class="col-md-3 col-12 buttonContainer">
+            <h2>ARRAY METHODS</h2>
+            <!-- Buttons to trigger various array methods -->
+            <button onclick="Length()">Length | Returns the length of the array</button>
+            <button onclick="ToString()">toString() | Converts array to a string</button>
+            <button onclick="at()">at() | Returns element at a specific index</button>
+            <button onclick="join()">join() | Joins all array elements into a string</button>
+            <button onclick="pop()">pop() | Removes the last element</button>
+            <button onclick="push()">push() | Adds elements to the array</button>
+            <button onclick="shift()">shift() | Removes the first element</button>
+            <button onclick="unshift()">unshift() | Adds elements to the start</button>
+            <button onclick="del()">delete() | Deletes an element at a specific index</button>
+            <button onclick="concat()">concat() | Merges arrays into a new one</button>
+            <button onclick="copyWithin()">copyWithin() | Copies part of array within it</button>
+            <button onclick="flat()">flat() | Flattens nested arrays</button>
+            <button onclick="splice()">splice() | Removes/changes elements</button>
+            <button onclick="toSpliced()">toSpliced() | Returns spliced array without mutation</button>
+            <button onclick="slice()">slice() | Returns a portion of an array</button>
+        </div>
+        <div class="col-md-9 col-12 content">
+            <h2>INPUT - OUTPUT DISPLAY</h2>
+            <input type="text" id="inputSubmit" class="form-control" placeholder="Array Input...">
+            <button onclick="submitInput()" id="button1" class="mt-3">SUBMIT ARRAY</button>
+            <div class="containerDisplay">
+                <div id="displayInput">ARRAY OUTPUT...</div>
+            </div>
+            <h3>RESULTS:</h3>
+            <div id="displayRes" class="containerDisplay"></div>
+            <button onclick="clearDisplay()" id="button2" class="mt-2">CLEAR</button>
+            <div id="displayArrayOption"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var array = []
+        const inputSubmitted = document.querySelector("#inputSubmit")
+        const displayInput = document.querySelector("#displayInput")
+        const displayRes = document.querySelector("#displayRes")
+        const displayArrayOption = document.querySelector("#displayArrayOption")
+
+        // Function to clear the array and reset displays
+        function clearDisplay() {
+            array = []
+            displayRes.innerHTML = ""
+            displayArrayOption.innerHTML = ""
+            displayInput.innerHTML = ""
+        }
+
+        // Function to submit input and add it to the array
+        function submitInput() {
+            const input = inputSubmitted.value
+            if (input !== '') {
+                array.push(input)
+                displayInput.innerHTML = array.join(" - ")
+                inputSubmitted.value = ""
+            }
+        }
+
+        // Method to get the length of the array
+        function Length() {
+            displayRes.innerHTML = `Length: ${array.length}`
+        }
+
+        // Method to convert the array to a string
+        function ToString() {
+            displayRes.innerHTML = `toString(): ${array.toString()}`
+        }
+
+        // Method to get the element at a specific index
+        function at() {
+            displayArrayOption.innerHTML = `
+            <div class="d-flex justify-content-center align-items-center">
+                <input type="text" id="indexInput" class="form-control" placeholder="Enter index">
+                <button onclick='at1()' class="btn btn-secondary ms-2">Get Element</button>
+            </div>
+            `
+        }
+
+        function at1() {
+            const index = document.getElementById('indexInput').value
+            if (index !== '' && !isNaN(index)) {
+                const element = array.at(Number(index))
+                displayRes.innerHTML = `Element at index [${index}]: ${element}`
+            } else {
+                displayRes.innerHTML = `INDEX ONLY`
+            }
+        }
+
+        // Method to join all elements of the array into a string
+        function join() {
+            displayInput.innerHTML = array.join(", SEPARATOR(JOIN), ")
+        }
+
+        // Method to remove the last element from the array
+        function pop() {
+            const poppedElement = array.pop()
+            if (poppedElement !== undefined) {
+                displayRes.innerHTML = `Element Popped: ${poppedElement}`
+                displayInput.innerHTML = `New Array: [${array.join(', ')}]`
+            } else {
+                displayInput.innerHTML = `Array is Empty`
+                displayRes.innerHTML = `NOTHING TO POP`
+            }
+        }
+
+        // Method to add elements to the array
+        function push() {
+            displayArrayOption.innerHTML = `
+            <div class="d-flex justify-content-center align-items-center">
+                <input type="text" id="elementInput" class="form-control" placeholder="Enter element">
+                <button onclick='push1()' class="btn btn-secondary ms-2">Push Element</button>
+            </div>
+            `
+        }
+
+        function push1() {
+            const input = document.querySelector("#elementInput").value
+            if (input !== "") {
+                array.push(input)
+                displayRes.innerHTML = `Pushed Element: ${input}`
+                displayInput.innerHTML = `New Array: [${array.join(', ')}]`
+            } else {
+                displayRes.innerHTML = `NOTHING TO PUSH`
+            }
+        }
+
+        // Method to remove the first element from the array
+        function shift() {
+            const shiftElement = array.shift()
+            if (shiftElement !== undefined) {
+                displayRes.innerHTML = `Element Shifted: ${shiftElement}`
+                displayInput.innerHTML = `New Array: [${array.join(', ')}]`
+            } else {
+                displayInput.innerHTML = `Array is Empty`
+                displayRes.innerHTML = `NOTHING TO SHIFT`
+            }
+        }
+
+        // Method to add elements to the beginning of the array
+        function unshift() {
+            displayArrayOption.innerHTML = `
+            <div class="d-flex justify-content-center align-items-center">
+                <input type="text" id="elementInput" class="form-control" placeholder="Enter element">
+                <button onclick='unshift1()' class="btn btn-secondary ms-2">Unshift Element</button>
+            </div>
+            `
+        }
+
+        function unshift1() {
+            const input = document.querySelector("#elementInput").value
+            if (input !== "") {
+                array.unshift(input)
+                displayRes.innerHTML = `Unshifted Element: ${input}`
+                displayInput.innerHTML = `New Array: [${array.join(', ')}]`
+            } else {
+                displayRes.innerHTML = `NOTHING TO UNSHIFT`
+            }
+        }
+
+        // Method to delete an element at a specific index
+        function del() {
+            displayArrayOption.innerHTML = `
+            <div class="d-flex justify-content-center align-items-center">
+                <input type="text" id="indexInput" class="form-control" placeholder="Enter index">
+                <button onclick='del1()' class="btn btn-secondary ms-2">Delete Element</button>
+            </div>
+            `
+        }
+
+        function del1() {
+            const index = document.getElementById('indexInput').value
+            if (index !== '' && !isNaN(index)) {
+                delete array[Number(index)]
+                displayRes.innerHTML = `Deleted element at index [${index}]`
+                displayInput.innerHTML = `New Array: [${array.join(', ')}]`
+            } else {
+                displayRes.innerHTML = `INDEX ONLY`
+            }
+        }
+
+        // Method to merge arrays into a new one
+        function concat() {
+            displayArrayOption.innerHTML = `
+            <div class="d-flex justify-content-center align-items-center">
+                <input type="text" id="arrayInput" class="form-control" placeholder="Enter array to concatenate">
+                <button onclick='concat1()' class="btn btn-secondary ms-2">Concat Array</button>
+            </div>
+            `
+        }
+
+        function concat1() {
+            const input = document.querySelector("#arrayInput").value
+            if (input !== "") {
+                const newArray = array.concat(input.split(","))
+                displayRes.innerHTML = `Concatenated Array: [${newArray.join(', ')}]`
+                displayInput.innerHTML = `Original Array: [${array.join(', ')}]`
+            } else {
+                displayRes.innerHTML = `NOTHING TO CONCAT`
+            }
+        }
+
+        // Method to copy part of the array within itself
+        function copyWithin() {
+            displayArrayOption.innerHTML = `
+            <div class="d-flex justify-content-center align-items-center">
+                <input type="text" id="targetInput" class="form-control" placeholder="Enter target index">
+                <input type="text" id="startInput" class="form-control ms-2" placeholder="Enter start index">
+                <input type="text" id="endInput" class="form-control ms-2" placeholder="Enter end index (optional)">
+                <button onclick='copyWithin1()' class="btn btn-secondary ms-2">Copy Within</button>
+            </div>
+            `
+        }
+
+        function copyWithin1() {
+            const target = document.querySelector("#targetInput").value
+            const start = document.querySelector("#startInput").value
+            const end = document.querySelector("#endInput").value
+            if (target !== '' && !isNaN(target) && start !== '' && !isNaN(start)) {
+                const endIndex = end === '' || isNaN(end) ? undefined : Number(end)
+                array.copyWithin(Number(target), Number(start), endIndex)
+                displayRes.innerHTML = `Array after copyWithin: [${array.join(', ')}]`
+                displayInput.innerHTML = `Updated Array: [${array.join(', ')}]`
+            } else {
+                displayRes.innerHTML = `INDEX ONLY`
+            }
+        }
+
+        // Method to flatten nested arrays into a single-level array
+        function flat() {
+            const flattenedArray = array.flat()
+            displayRes.innerHTML = `Flattened Array: [${flattenedArray.join(', ')}]`
+            displayInput.innerHTML = `Original Array: [${array.join(', ')}]`
+        }
+
+        // Method to remove or replace elements and return the removed elements
+        function splice() {
+            displayArrayOption.innerHTML = `
+            <div class="d-flex justify-content-center align-items-center">
+                <input type="text" id="startInput" class="form-control" placeholder="Enter start index">
+                <input type="text" id="deleteCountInput" class="form-control ms-2" placeholder="Enter delete count">
+                <input type="text" id="itemsInput" class="form-control ms-2" placeholder="Enter items to add (optional)">
+                <button onclick='splice1()' class="btn btn-secondary ms-2">Splice</button>
+            </div>
+            `
+        }
+
+        function splice1() {
+            const start = document.querySelector("#startInput").value
+            const deleteCount = document.querySelector("#deleteCountInput").value
+            const items = document.querySelector("#itemsInput").value
+            if (start !== '' && !isNaN(start)) {
+                const itemsArray = items === '' ? [] : items.split(",")
+                const deletedItems = array.splice(Number(start), deleteCount === '' ? undefined : Number(deleteCount), ...itemsArray)
+                displayRes.innerHTML = `Array after splice: [${array.join(', ')}]`
+                displayInput.innerHTML = `Deleted Items: [${deletedItems.join(', ')}]`
+            } else {
+                displayRes.innerHTML = `INDEX ONLY`
+            }
+        }
+
+        // Method to return a spliced array without modifying the original array
+        function toSpliced() {
+            displayArrayOption.innerHTML = `
+            <div class="d-flex justify-content-center align-items-center">
+                <input type="text" id="startInput" class="form-control" placeholder="Enter start index">
+                <input type="text" id="deleteCountInput" class="form-control ms-2" placeholder="Enter delete count">
+                <input type="text" id="itemsInput" class="form-control ms-2" placeholder="Enter items to add (optional)">
+                <button onclick='toSpliced1()' class="btn btn-secondary ms-2">toSpliced</button>
+            </div>
+            `
+        }
+
+        function toSpliced1() {
+            const start = document.querySelector("#startInput").value
+            const deleteCount = document.querySelector("#deleteCountInput").value
+            const items = document.querySelector("#itemsInput").value
+            if (start !== '' && !isNaN(start)) {
+                const itemsArray = items === '' ? [] : items.split(",")
+                const splicedArray = array.toSpliced(Number(start), deleteCount === '' ? undefined : Number(deleteCount), ...itemsArray)
+                displayRes.innerHTML = `Spliced Array: [${splicedArray.join(', ')}]`
+                displayInput.innerHTML = `Original Array: [${array.join(', ')}]`
+            } else {
+                displayRes.innerHTML = `INDEX ONLY`
+            }
+        }
+
+        // Method to return a portion of the array
+        function slice() {
+            displayArrayOption.innerHTML = `
+            <div class="d-flex justify-content-center align-items-center">
+                <input type="text" id="startInput" class="form-control" placeholder="Enter start index">
+                <input type="text" id="endInput" class="form-control ms-2" placeholder="Enter end index (optional)">
+                <button onclick='slice1()' class="btn btn-secondary ms-2">Slice</button>
+            </div>
+            `
+        }
+
+        function slice1() {
+            const start = document.querySelector("#startInput").value
+            const end = document.querySelector("#endInput").value
+            if (start !== '' && !isNaN(start)) {
+                const endIndex = end === '' || isNaN(end) ? undefined : Number(end)
+                const slicedArray = array.slice(Number(start), endIndex)
+                displayRes.innerHTML = `Sliced Array: [${slicedArray.join(', ')}]`
+                displayInput.innerHTML = `Original Array: [${array.join(', ')}]`
+            } else {
+                displayRes.innerHTML = `INDEX ONLY`
+            }
+        }
+    </script>
+</body>
+</html>

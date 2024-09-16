@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array-Submitter</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex justify-center items-center h-screen bg-gray-200">
+    <div class="flex flex-col items-center border border-gray-400 p-6 sm:p-8 bg-gray-300 rounded-lg w-auto max-w-full">
+        <h2 class="text-xl sm:text-2xl mb-6">ARRAY SUBMITTER</h2>
+
+        <div id="submit1" class="flex flex-col sm:flex-row p-2 mb-4 w-full">
+            <input type="text" id="submit" class="p-3 flex-1 border border-gray-400 rounded-lg mb-2 sm:mb-0 sm:mr-2" placeholder="Type Input here...">
+            <button onclick="submitInput()" class="p-3 bg-green-500 text-white font-bold rounded-lg flex-shrink-0" id="submitButton">SUBMIT</button>
+        </div>
+
+        <div id="submit2" class="flex flex-col sm:flex-row p-2 mb-4 w-full">
+            <input type="text" id="delete" class="p-3 flex-1 border border-gray-400 rounded-lg mb-2 sm:mb-0 sm:mr-2" placeholder="Delete Input here...">
+            <button onclick="deleteInput()" class="p-3 bg-red-700 text-white font-bold rounded-lg flex-shrink-0" id="deleteButton">DELETE</button>
+        </div>
+
+        <div id="submit3" class="flex flex-col sm:flex-row p-2 mb-4">
+            <input type="text" id="edit1" placeholder="Input to be replaced..." class="p-3 flex-1 border border-gray-400 rounded-lg mb-2 sm:mb-0 sm:mr-2">
+            <input type="text" id="edit2" placeholder="New Output..." class="p-3 flex-1 border border-gray-400 rounded-lg mb-2 sm:mb-0 sm:mr-2">
+            <button onclick="editInput()" class="p-3 bg-gray-700 text-white font-bold rounded-lg flex-shrink-0" id="editButton">EDIT</button>
+        </div>
+
+        <div id="displayInput" class="flex justify-center items-center text-center border border-gray-300 h-20 w-full max-w-xs mb-4 bg-white rounded-lg"></div>
+        <button onclick="clearInput()" id="buttonClear" class="p-1 bg-black text-white font-bold rounded-lg h-8 w-full max-w-xs">CLEAR</button>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
