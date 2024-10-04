@@ -10,6 +10,7 @@ const tryOptions = document.getElementById("tryOptions");
 randomNum.hidden = true;
 guessButton.hidden = true;
 
+//starts the game and erases all previous attempts
 function startGame() {
    display.innerHTML = "";
    randomNum.hidden = true;
@@ -23,6 +24,7 @@ function startGame() {
    `;
 }
 
+//sets the max number of tries for the game
 function setMaxTries(maxTries) {
    randomNum.hidden = false;
    guessButton.hidden = false;
@@ -34,15 +36,11 @@ function setMaxTries(maxTries) {
    };
 }
 
+//guesses the number and checks if it's correct
 function guessNumber(maxTries) {
    const guessValue = randomNum.value.trim();
+//increases the number of tries by 1 per click
    tries++;
-
-   // if (guessValue == correctAnswer) {
-   //    display.innerHTML = `<h3 style='color: #28a745;'>YOU WIN! CONGRATULATIONS!!!<br><button onclick="resetGame()">PLAY AGAIN</button></h3>`;
-   //    guessButton.hidden = true;
-   //    randomNum.hidden = true;
-   // }
 
    if (tries >= maxTries + 1) {
       display.innerHTML = `<h3 style='color: #dc3545;'>YOU LOST! <h5 style='color: green;'>THE ANSWER WAS ${correctAnswer}</h5><br><button onclick="resetGame()">PLAY AGAIN</button></h3>`;
@@ -51,6 +49,7 @@ function guessNumber(maxTries) {
       return;
    }
 
+//this is a ternary operator dont get confused
    guessValue === ""
       ? (display.innerHTML = `PLEASE ENTER A NUMBER`)
       : isNaN(guessValue)
@@ -69,6 +68,7 @@ function guessNumber(maxTries) {
    displayAttempt.innerHTML = `TRIES: ${tries} / ${maxTries}`;
 }
 
+//resets the game back to the options
 function resetGame() {
    correctAnswer = Math.floor(Math.random() * 101);
    tries = 0;
