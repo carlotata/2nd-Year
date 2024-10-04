@@ -24,7 +24,6 @@ function startGame() {
 }
 
 function setMaxTries(maxTries) {
-   tries = 0;
    randomNum.hidden = false;
    guessButton.hidden = false;
    tryOptions.hidden = true;
@@ -39,6 +38,12 @@ function guessNumber(maxTries) {
    const guessValue = randomNum.value.trim();
    tries++;
 
+   // if (guessValue == correctAnswer) {
+   //    display.innerHTML = `<h3 style='color: #28a745;'>YOU WIN! CONGRATULATIONS!!!<br><button onclick="resetGame()">PLAY AGAIN</button></h3>`;
+   //    guessButton.hidden = true;
+   //    randomNum.hidden = true;
+   // }
+
    if (tries >= maxTries + 1) {
       display.innerHTML = `<h3 style='color: #dc3545;'>YOU LOST! <h5 style='color: green;'>THE ANSWER WAS ${correctAnswer}</h5><br><button onclick="resetGame()">PLAY AGAIN</button></h3>`;
       guessButton.hidden = true;
@@ -46,21 +51,19 @@ function guessNumber(maxTries) {
       return;
    }
 
-   if (guessValue === "") {
-      display.innerHTML = `PLEASE ENTER A NUMBER`;
-   } else if (isNaN(guessValue)) {
-      display.innerHTML = `NUMBER ONLY!`;
-   } else if (guessValue < 1 || guessValue > 100) {
-      display.innerHTML = `NUMBER BETWEEN 1-100 ONLY!`;
-   } else if (guessValue === correctAnswer) {
-      display.innerHTML = `<h3 style='color: #28a745;'>YOU WIN! CONGRATULATIONS!!!<br><button onclick="resetGame()">PLAY AGAIN</button></h3>`;
-      guessButton.hidden = true;
-      randomNum.hidden = true;
-   } else if (guessValue < correctAnswer) {
-      display.innerHTML = `THE NUMBER IS TOO LOW.`;
-   } else {
-      display.innerHTML = `THE NUMBER IS TOO HIGH.`;
-   }
+   guessValue === ""
+      ? (display.innerHTML = `PLEASE ENTER A NUMBER`)
+      : isNaN(guessValue)
+      ? (display.innerHTML = `NUMBER ONLY!`)
+      : guessValue < 1 || guessValue > 100
+      ? (display.innerHTML = `NUMBER BETWEEN 1-100 ONLY!`)
+      : guessValue < correctAnswer
+      ? (display.innerHTML = `THE NUMBER IS TOO LOW.`)
+      : guessValue > correctAnswer
+      ? (display.innerHTML = `THE NUMBER IS TOO HIGH.`)
+      : ((display.innerHTML = `<h3 style='color: #28a745;'>YOU WIN! CONGRATULATIONS!!!<br><button onclick="resetGame()">PLAY AGAIN</button></h3>`),
+        (guessButton.hidden = true),
+        (randomNum.hidden = true));
 
    randomNum.value = "";
    displayAttempt.innerHTML = `TRIES: ${tries} / ${maxTries}`;
